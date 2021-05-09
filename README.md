@@ -11,8 +11,8 @@ You can sign up for an iyzico account at https://iyzico.com
 # Requirements
 One of the runtime environment is required from below
 * .NET Framework 4.5
-* .NET Core 1.1
-* .NET Core 2.0
+* .NET Core 3.1
+* .NET Core 5.0
 
 # Installation
 
