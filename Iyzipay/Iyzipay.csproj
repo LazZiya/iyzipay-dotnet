@@ -1,48 +1,58 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net45;netstandard2.0;netstandard1.3</TargetFrameworks>
-    <AssemblyName>Iyzipay</AssemblyName>
-    <RootNamespace>Iyzipay</RootNamespace>
-    <Version>2.1.39</Version>
-    <Authors>Iyzico</Authors>
-    <Description>iyzipay api .net client</Description>
-    <PackageProjectUrl>https://github.com/iyzico/iyzipay-dotnet&lt;/projectUrl</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/iyzico/iyzipay-dotnet/blob/master/LICENSE</PackageLicenseUrl>
-    <RepositoryUrl>https://github.com/iyzico/iyzipay-dotnet</RepositoryUrl>
-    <PackageIconUrl>https://en.gravatar.com/userimage/100711999/40aab086bed8dabfb387c0772a73ea7e.png</PackageIconUrl>
-    <Copyright>Copyright 2016</Copyright>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.1;netstandard2.0;netstandard1.3;net45</TargetFrameworks>
+		<AssemblyName>Iyzipay</AssemblyName>
+		<RootNamespace>Iyzipay</RootNamespace>
+		<Version>1.0.0-beta1</Version>
+		<Authors>Iyzico</Authors>
+		<Description>iyzipay api .net client</Description>
+		<PackageProjectUrl>https://github.com/LazZiya/iyzipay-dotnet</PackageProjectUrl>
+		<PackageLicenseUrl></PackageLicenseUrl>
+		<RepositoryUrl>https://github.com/LazZiya/iyzipay-dotnet</RepositoryUrl>
+		<Copyright>Copyright 2021</Copyright>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>LazZiya.Iyzipay</PackageId>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+		<Reference Include="System.Configuration" />
+		<Reference Include="System" />
+		<Reference Include="System.Core" />
+		<Reference Include="System.Xml.Linq" />
+		<Reference Include="System.Data.DataSetExtensions" />
+		<Reference Include="Microsoft.CSharp" />
+		<Reference Include="System.Data" />
+		<Reference Include="System.Net.Http" />
+		<Reference Include="System.Xml" />
+
+		<PackageReference Include="Newtonsoft.Json" Version="8.0.2" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+		<PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+	</ItemGroup>
 
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <Reference Include="System.Configuration" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+		<PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+	</ItemGroup>
 
-    <PackageReference Include="Newtonsoft.Json" Version="8.0.2" />
-  </ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
+		<PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+		<PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0" />
+	</ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-  </ItemGroup>
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+		<DefineConstants>$(DefineConstants);NETSTANDARD2</DefineConstants>
+	</PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0" />
-  </ItemGroup>
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
+		<DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
+	</PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <DefineConstants>$(DefineConstants);NETSTANDARD2</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-    <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
-  </PropertyGroup>
+	<Target Name="AfterPack" AfterTargets="Pack">
+		<Exec Command="dotnet nuget push $(PackageOutputPath)*.nupkg --source Local" />
+	</Target>
 </Project>

@@ -1,62 +1,135 @@
 using System;
+using System.Threading.Tasks;
 using Iyzipay.Request.V2.Subscription;
 
 namespace Iyzipay.Model.V2.Subscription
 {
     public class Subscription : IyzipayResourceV2
     {
+        // sync
         public static CheckoutFormResource InitializeCheckoutForm(InitializeCheckoutFormRequest request, Options options)
         {
             string uri = $"{options.BaseUrl}/v2/subscription/checkoutform/initialize";
             return RestHttpClientV2.Create().Post<CheckoutFormResource>( uri, GetHttpHeadersWithRequestBody(request, uri ,options), request);
         }
         
+        // Async
+        public static async Task<CheckoutFormResource> InitializeCheckoutFormAsync(InitializeCheckoutFormRequest request, Options options)
+        {
+            string uri = $"{options.BaseUrl}/v2/subscription/checkoutform/initialize";
+            return await RestHttpClientV2.Create().PostAsync<CheckoutFormResource>( uri, GetHttpHeadersWithRequestBody(request, uri ,options), request);
+        }
+        
+        // sync
         public static UpdateCardFormResource UpdateCard(UpdateCardRequest request, Options options)
         {
             string uri = $"{options.BaseUrl}/v2/subscription/card-update/checkoutform/initialize";
             return RestHttpClientV2.Create().Post<UpdateCardFormResource>( uri, GetHttpHeadersWithRequestBody(request, uri ,options), request);
         }
         
+        // Async
+        public static async Task<UpdateCardFormResource> UpdateCardAsync(UpdateCardRequest request, Options options)
+        {
+            string uri = $"{options.BaseUrl}/v2/subscription/card-update/checkoutform/initialize";
+            return await RestHttpClientV2.Create().PostAsync<UpdateCardFormResource>( uri, GetHttpHeadersWithRequestBody(request, uri ,options), request);
+        }
+        
+        // sync
         public static ResponseData<SubscriptionCreatedResource> Initialize(SubscriptionInitializeRequest request, Options options)
         {
             string uri = $"{options.BaseUrl}/v2/subscription/initialize";
             return RestHttpClientV2.Create().Post<ResponseData<SubscriptionCreatedResource>>( uri, GetHttpHeadersWithRequestBody(request, uri ,options), request);
         }
         
+        // Async
+        public static async Task<ResponseData<SubscriptionCreatedResource>> InitializeAsync(SubscriptionInitializeRequest request, Options options)
+        {
+            string uri = $"{options.BaseUrl}/v2/subscription/initialize";
+            return await RestHttpClientV2.Create().PostAsync<ResponseData<SubscriptionCreatedResource>>( uri, GetHttpHeadersWithRequestBody(request, uri ,options), request);
+        }
+        
+        // sync
         public static IyzipayResourceV2 Activate(ActivateSubscriptionRequest request, Options options)
         {
             string uri = $"{options.BaseUrl}/v2/subscription/subscriptions/{request.SubscriptionReferenceCode}/activate";
             return RestHttpClientV2.Create().Post<IyzipayResourceV2>( uri, GetHttpHeadersWithRequestBody(request, uri ,options), request);
         }
         
+        // Async
+        public static async Task<IyzipayResourceV2> ActivateAsync(ActivateSubscriptionRequest request, Options options)
+        {
+            string uri = $"{options.BaseUrl}/v2/subscription/subscriptions/{request.SubscriptionReferenceCode}/activate";
+            return await RestHttpClientV2.Create().PostAsync<IyzipayResourceV2>( uri, GetHttpHeadersWithRequestBody(request, uri ,options), request);
+        }
+        
+        // sync
         public static IyzipayResourceV2 Retry(RetrySubscriptionRequest request, Options options)
         {
             string uri = $"{options.BaseUrl}/v2/subscription/operation/retry";
             return RestHttpClientV2.Create().Post<IyzipayResourceV2>( uri, GetHttpHeadersWithRequestBody(request, uri ,options), request);
         }
         
+        // Async
+        public static async Task<IyzipayResourceV2> RetryAsync(RetrySubscriptionRequest request, Options options)
+        {
+            string uri = $"{options.BaseUrl}/v2/subscription/operation/retry";
+            return await RestHttpClientV2.Create().PostAsync<IyzipayResourceV2>( uri, GetHttpHeadersWithRequestBody(request, uri ,options), request);
+        }
+        
+        // sync
         public static IyzipayResourceV2 Upgrade(UpgradeSubscriptionRequest request, Options options)
         {
             string uri = $"{options.BaseUrl}/v2/subscription/subscriptions/{request.SubscriptionReferenceCode}/upgrade";
             return RestHttpClientV2.Create().Post<IyzipayResourceV2>( uri, GetHttpHeadersWithRequestBody(request, uri ,options), request);
         }
         
+        // Async
+        public static async Task<IyzipayResourceV2> UpgradeAsync(UpgradeSubscriptionRequest request, Options options)
+        {
+            string uri = $"{options.BaseUrl}/v2/subscription/subscriptions/{request.SubscriptionReferenceCode}/upgrade";
+            return await RestHttpClientV2.Create().PostAsync<IyzipayResourceV2>( uri, GetHttpHeadersWithRequestBody(request, uri ,options), request);
+        }
+        
+        // sync
         public static IyzipayResourceV2 Cancel(CancelSubscriptionRequest request, Options options)
         {
             string uri = $"{options.BaseUrl}/v2/subscription/subscriptions/{request.SubscriptionReferenceCode}/cancel";
             return RestHttpClientV2.Create().Post<IyzipayResourceV2>( uri, GetHttpHeadersWithRequestBody(request, uri ,options), request);
         }
         
+        // Async
+        public static async Task<IyzipayResourceV2> CancelAsync(CancelSubscriptionRequest request, Options options)
+        {
+            string uri = $"{options.BaseUrl}/v2/subscription/subscriptions/{request.SubscriptionReferenceCode}/cancel";
+            return await RestHttpClientV2.Create().PostAsync<IyzipayResourceV2>( uri, GetHttpHeadersWithRequestBody(request, uri ,options), request);
+        }
+        
+        // sync
         public static ResponseData<SubscriptionResource> Retrieve(RetrieveSubscriptionRequest request, Options options)
         {
             string uri = $"{options.BaseUrl}/v2/subscription/subscriptions/{request.SubscriptionReferenceCode}";
             return RestHttpClientV2.Create().Get<ResponseData<SubscriptionResource>>( uri, GetHttpHeadersWithUrlParams(request, uri ,options));
         }
         
+        // Async
+        public static async Task<ResponseData<SubscriptionResource>> RetrieveAsync(RetrieveSubscriptionRequest request, Options options)
+        {
+            string uri = $"{options.BaseUrl}/v2/subscription/subscriptions/{request.SubscriptionReferenceCode}";
+            return await RestHttpClientV2.Create().GetAsync<ResponseData<SubscriptionResource>>( uri, GetHttpHeadersWithUrlParams(request, uri ,options));
+        }
+        
+        // sync
         public static ResponsePagingData<SubscriptionResource> Search(SearchSubscriptionRequest request, Options options)
         {
             string uri = $"{options.BaseUrl}/v2/subscription/subscriptions{GetQueryParams(request)}";
             return RestHttpClientV2.Create().Get<ResponsePagingData<SubscriptionResource>>( uri, GetHttpHeadersWithUrlParams(request, uri ,options));
+        }
+        
+        // Async
+        public static async Task<ResponsePagingData<SubscriptionResource>> SearchAsync(SearchSubscriptionRequest request, Options options)
+        {
+            string uri = $"{options.BaseUrl}/v2/subscription/subscriptions{GetQueryParams(request)}";
+            return await RestHttpClientV2.Create().GetAsync<ResponsePagingData<SubscriptionResource>>( uri, GetHttpHeadersWithUrlParams(request, uri ,options));
         }
         
         private static string GetQueryParams(SearchSubscriptionRequest request) {

@@ -1,5 +1,6 @@
 ﻿using Iyzipay.Request;
 using System;
+using System.Threading.Tasks;
 
 namespace Iyzipay.Model
 {
@@ -25,9 +26,16 @@ namespace Iyzipay.Model
         public String MerchantPayoutAmount { get; set; }
         public ConvertedPayout ConvertedPayout { get; set; }
 
+        // sync
         public static PaymentItem Update(UpdatePaymentItemRequest request, Options options)
         {
             return RestHttpClient.Create().Put<PaymentItem>(options.BaseUrl + "/payment/item", GetHttpHeaders(request, options), request);
+        }
+        
+        // Async
+        public static async Task<PaymentItem> UpdateAsync(UpdatePaymentItemRequest request, Options options)
+        {
+            return await RestHttpClient.Create().PutAsync<PaymentItem>(options.BaseUrl + "/payment/item", GetHttpHeaders(request, options), request);
         }
     }
 }

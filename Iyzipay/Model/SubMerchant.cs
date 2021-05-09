@@ -1,5 +1,6 @@
 ﻿using Iyzipay.Request;
 using System;
+using System.Threading.Tasks;
 
 namespace Iyzipay.Model
 {
@@ -23,19 +24,40 @@ namespace Iyzipay.Model
         public String SubMerchantKey { get; set; }
         public String SettlementDescriptionTemplate { get; set; }
 
+        // sync
         public static SubMerchant Create(CreateSubMerchantRequest request, Options options)
         {
             return RestHttpClient.Create().Post<SubMerchant>(options.BaseUrl + "/onboarding/submerchant", GetHttpHeaders(request, options), request);
         }
+        
+        // Async
+        public static async Task<SubMerchant> CreateAsync(CreateSubMerchantRequest request, Options options)
+        {
+            return await RestHttpClient.Create().PostAsync<SubMerchant>(options.BaseUrl + "/onboarding/submerchant", GetHttpHeaders(request, options), request);
+        }
 
+        // sync
         public static SubMerchant Update(UpdateSubMerchantRequest request, Options options)
         {
             return RestHttpClient.Create().Put<SubMerchant>(options.BaseUrl + "/onboarding/submerchant", GetHttpHeaders(request, options), request);
         }
+        
+        // Async
+        public static async Task<SubMerchant> UpdateAsync(UpdateSubMerchantRequest request, Options options)
+        {
+            return await RestHttpClient.Create().PutAsync<SubMerchant>(options.BaseUrl + "/onboarding/submerchant", GetHttpHeaders(request, options), request);
+        }
 
+        // sync
         public static SubMerchant Retrieve(RetrieveSubMerchantRequest request, Options options)
         {
             return RestHttpClient.Create().Post<SubMerchant>(options.BaseUrl + "/onboarding/submerchant/detail", GetHttpHeaders(request, options), request);
+        }
+        
+        // Async
+        public static async Task<SubMerchant> RetrieveAsync(RetrieveSubMerchantRequest request, Options options)
+        {
+            return await RestHttpClient.Create().PostAsync<SubMerchant>(options.BaseUrl + "/onboarding/submerchant/detail", GetHttpHeaders(request, options), request);
         }
     }
 }
